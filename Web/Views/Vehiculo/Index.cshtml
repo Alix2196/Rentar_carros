@@ -1,0 +1,13 @@
+﻿
+@model VehiculoViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@Model.Mensaje</h1>
+
+@foreach (var vehiculo in Model.ListVehiculos)
+{
+    <tr></tr>
+    <h2>@vehiculo.Placa</h2>
+}
