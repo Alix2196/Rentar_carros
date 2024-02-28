@@ -8,6 +8,7 @@ namespace Data
         static readonly string connectionString = "Server=192.168.0.100; User ID=root; Password=root; Database=renta_automoviles";
 
         public required DbSet<EntityVehiculos> EntityVehiculos { get; set; }
+        public required DbSet<EntityCliente> EntityCliente { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
