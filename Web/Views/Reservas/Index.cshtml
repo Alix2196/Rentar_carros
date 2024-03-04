@@ -1,0 +1,36 @@
+﻿@model ReservasViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Reservas</h1>
+
+<p><a asp-controller="Reservas" asp-action="Crear">Crear Reserva</a></p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID Reserva</th>
+            <th>Estado</th>
+            <th>Vehículo</th>
+            <th>Cliente</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Tipo Pago</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reserva in Model.ListReservas)
+        {
+            <tr>
+                <td>@reserva.IdReserva</td>
+                <td>@(reserva.Estado != null ? reserva.Estado.Tipo : "N/A")</td>
+                <td>@(reserva.Vehiculo != null ? reserva.Vehiculo.Placa : "N/A")</td>
+                <td>@(reserva.Cliente != null ? reserva.Cliente.Nombre : "N/A")</td>
+                <td>@reserva.FechaInicio.ToString("yyyy-MM-dd")</td>
+                <td>@reserva.FechaFin.ToString("yyyy-MM-dd")</td>
+                <td>@(reserva.TipoPago != null ? reserva.TipoPago.Tipo : "N/A")</td>
+            </tr>
+        }
+    </tbody>
+</table>

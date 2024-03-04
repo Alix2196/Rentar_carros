@@ -1,0 +1,55 @@
+﻿
+@model ClienteViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<div>
+    <h1 class="my-2">Clientes</h1>
+
+    <div class="my-2 d-flex justify-content-end">
+        <a class="btn btn-success" asp-area="" asp-controller="Cliente" asp-action="Crear">Crear Cliente</a>
+    </div>
+
+    <div class="my-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Documento</th>
+                    <th scope="col">Ciudad</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Fecha Nacimiento</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cliente in Model.ListCliente)
+                {
+                    <tr>
+                        <td>@cliente.Id</td>
+                        <td>@cliente.Documento</td>
+                        <td>@cliente.Ciudad</td>
+                        <td>@cliente.Nombre</td>
+                        <td>@cliente.Email</td>
+                        <td>@cliente.Telefono</td>
+                        <td>@cliente.Direccion</td>
+                        <td>@cliente.Fecha_Nacimiento</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
+
+</div>
+
+
+
+
+   
+
+
+
+

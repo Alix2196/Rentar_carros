@@ -12,18 +12,15 @@ namespace Data.Entity
         public int Id { get; set; }
 
         [Column("documento")]
-        public string? Documento { get; set; }
+        public int Documento { get; set; }
 
         [Column("ciudad")]
         public string? Ciudad { get; set; }
 
         [Column("nombre")]
-        [MaxLength(100)] 
         public string? Nombre { get; set; }
 
         [Column("email")]
-        [MaxLength(100)] 
-        [EmailAddress] 
         public string? Email { get; set; }
 
         [Column("telefono")]

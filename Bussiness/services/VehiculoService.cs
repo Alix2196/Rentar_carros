@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bussiness.services
 {
-    public  class VehiculoService
+    public class VehiculoService
     {
 
         private readonly AppConection _context;
@@ -29,5 +29,11 @@ namespace Bussiness.services
             var listaVehiculos = _context.EntityVehiculos.ToList();
             return listaVehiculos;
         }
+
+        public List<string> GetTiposVehiculos()
+        {
+            return [.. _context.EntityVehiculos.Select(v => v.Tipo).Distinct()];
+        }
+
     }
 }

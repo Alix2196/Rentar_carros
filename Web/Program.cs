@@ -12,13 +12,16 @@ namespace Web
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddScoped<ClienteService>();
+            builder.Services.AddScoped<ReservasService>();
+            builder.Services.AddScoped<VehiculoService>();
+
             builder.Services.AddControllersWithViews();
+            builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<AppConection>(options =>
                 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-
-            builder.Services.AddScoped<VehiculoService>();
 
             var app = builder.Build();
 
@@ -41,7 +44,9 @@ namespace Web
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-
+            app.MapControllerRoute(name: "Cliente",
+                            pattern: "{controller=Cliente}/{action=Crear}");
+                
             // Prueba de conexión a la base de datos
             using (var scope = app.Services.CreateScope())
             {

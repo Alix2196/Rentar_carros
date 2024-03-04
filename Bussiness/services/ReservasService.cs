@@ -1,0 +1,46 @@
+﻿using Data;
+using Data.Entity;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Bussiness.services
+{
+    public class ReservasService(AppConection context)
+    {
+        private readonly AppConection _context = context;
+
+        public EntityReservas GuardarReservas(EntityReservas entityReservas)
+        {
+            _context.EntityReservas.Add(entityReservas);
+            _context.SaveChanges();
+            return entityReservas;
+        }
+
+        public List<EntityReservas> ObtenerReservas()
+        {
+            var listReservas = _context.EntityReservas
+                .Include(r => r.Solicitud)
+                .Include(r => r.Estado)
+                .Include(r => r.Vehiculo)
+                .Include(r => r.Cliente)
+                .Include(r => r.TipoPago)
+                .ToList();
+
+            return listReservas;
+        }
+
+         /*public List<EntityReservas> ListarReservasTarjetaCredito() 
+         {
+             var listarReservascredito = _context.EntityReservas.ToList();
+             return listarReservascredito;
+         }
+        public EntityReservas GetRealizarReservas()
+        {
+            return new EntityReservas();
+        }*/
+    }
+}

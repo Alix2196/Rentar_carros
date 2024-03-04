@@ -1,28 +1,26 @@
 ﻿using Data;
 using Data.Entity;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bussiness.services
 {
-    internal class ClienteService
+    public class ClienteService(AppConection context)
     {
 
-        private readonly AppConection _context;
+        private readonly AppConection _context = context;
 
-        public ClienteService(AppConection context)
+        public List<EntityCliente> ObtenerClientes()
         {
-            _context = context;
+            return _context.EntityCliente.ToList();
         }
 
         public EntityCliente GuardarCliente(EntityCliente entityCliente)
         {
-
-            return new EntityCliente();
-
+            entityCliente.Fecha_Creacion = DateTime.Now;
+            entityCliente.Fecha_Actualizacion = DateTime.Now;
+            _context.EntityCliente.Add(entityCliente);
+            _context.SaveChanges();
+            return entityCliente;
         }
 
         public string GetPreferenciasCliente(int documento)
@@ -37,7 +35,8 @@ namespace Bussiness.services
 
         public List<EntityCliente> GetListaClientesMayoresCuarentaBogotaReserva()
         {
-            return [];
+            return new List<EntityCliente>();
         }
+
     }
 }
