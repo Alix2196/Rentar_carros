@@ -55,5 +55,10 @@ namespace Web.Controllers
 
             return View(entityReservas);
         }
+
+        public IActionResult Pago(EntityReservas entityReservas) 
+        {
+            return View(entityReservas);
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace Bussiness.services
 
         public EntityReservas GuardarReservas(EntityReservas entityReservas)
         {
+            /*Crear Solicitud*/
             _context.EntityReservas.Add(entityReservas);
             _context.SaveChanges();
             return entityReservas;
@@ -23,11 +24,10 @@ namespace Bussiness.services
         public List<EntityReservas> ObtenerReservas()
         {
             var listReservas = _context.EntityReservas
-                .Include(r => r.Solicitud)
                 .Include(r => r.Estado)
-                .Include(r => r.Vehiculo)
                 .Include(r => r.Cliente)
-                .Include(r => r.TipoPago)
+                .Include(r =>r.TipoPago)
+                .Include(r => r.Vehiculo)
                 .ToList();
 
             return listReservas;

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Pago";
+}
+
+<h1>Realizar pago</h1>
+<div>
+    <form class="container-fluid" asp-controller="Reservas" asp-action="Pago"  method="post">
+        <div class="container-fluid">
+           <div class="row py-3">
+                <div class="col-auto">
+                    <label for="inputPassword2" class="visually-hidden">Dias</label>
+                    <input type="number" class="form-control" id="inputDias" placeholder="Dias">
+                </div>
+                <div class="col-auto">
+                    <label for="costodias" class="visually-hidden">Costo Dias</label>
+                    <input type="number" class="form-control" id="inputCostoDias" placeholder="Costo de Dias">
+                </div>
+                <div class="col-auto">
+                    <label for="impuesto" class="visually-hidden">Impuesto</label>
+                    <input type="number" class="form-control" id="inputCostoDias" placeholder="impuesto">
+                </div>
+                <div>
+                    <label for="basic-url" class="form-label">Tipo Pago</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">Tarjeta de Credito</option>
+                        <option value="2">Transferencia ancaria</option>
+                        <option value="3">Destino</option>
+                    </select>
+                </div>
+           </div>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-success me-3 asp-controller="Reservas" asp-action="Crear">Volver</button>
+            <button asp-controller="Reservas" asp-action="Index" class="btn btn-danger">Pagar</button>
+        </div>
+    </form>
+</div>
