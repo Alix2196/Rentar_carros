@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bussiness.services
 {
-    internal class SetSolicitud
+    internal class SolicitudSolicitud
     {
     }
 }

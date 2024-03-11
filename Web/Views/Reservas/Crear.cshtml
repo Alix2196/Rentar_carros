@@ -1,49 +1,72 @@
-﻿@model ReservasViewModel
+﻿@model ReservasViewModel 
 
 @{
     ViewData["Title"] = "Crear";
+    var hoy = DateTime.Now.ToString("yyyy-MM-dd");
 }
 
 <h1>Crear Reserva</h1>
+    <div class="d-flex justify-content-center">
+        <div class="p-3 d-flex justify-content-start">
+            <p>Solicitud #1</p>
+        </div>
+        <div class="p-3  d-flex justify-content-end">
+            <p>Fecha Actualizacion:01/01/2024</p>
+        </div>
+    </div>
+
 <div>
-    <form class="container-fluid" asp-controller="Reservas" asp-action="Crear" method="post" >
+    <form class="container-fluid" asp-controller="Reservas" asp-action="CrearReserva" method="post">
         <div class="container-fluid">
             <div class="row py-3">
-                <div>
-                    <label for="basic-url" class="form-label">Tipo de vehiculo</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        @foreach (var TipoVehiculo in Model.ListaTipoVehiculos)
+                <div class="mb-3 col-4">
+                    <label for="basic-url" asp-for="ClienteId" class="form-label">Cliente</label>
+                    <select class="form-select" aria-label="Default select example" asp-for="ClienteId">
+                        <option selected>Select...</option>
+                        @foreach (var cliente in Model.ListCliente)
                         {
-                            <option value="@TipoVehiculo">@TipoVehiculo</option>
+                            <option value="@cliente.Id">@cliente.Nombre</option>
                         }
                     </select>
                 </div>
-                <div>
-                    <label for="basic-url" class="form-label">vehiculo</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                <div class="mt-2 pt-4 col-4">
+                    <a  class="btn btn-success me-3" asp-controller="Cliente" asp-action="Crear">Crear Cliente</a>
+                </div>
+                @*
+                <div class="mb-3 col-5">
+                <label for="basic-url" class="form-label">Tipo de vehiculo</label>
+                <select class="form-select" aria-label="Default select example">
+                <option selected>Select...</option>
+                @foreach (var tipoVehiculo in Model.ListaTipoVehiculos)
+                {
+                <option value="@tipoVehiculo">@tipoVehiculo</option>
+                }
+                </select>
+                </div>
+                *@
+               
+                <div class="mb-3 col-5">
+                    <label for="basic-url" asp-for="VehiculosId" class="form-label">vehiculos</label>
+                    <select class="form-select" aria-label="Default select example" asp-for="VehiculosId">
+                        <option selected>Select...</option>
+                        @foreach (var vehiculo in Model.ListaVehiculos)
+                        {
+                            <option value="@vehiculo.Id">@vehiculo.Placa</option>
+                        }
                     </select>
                 </div>
-                <div>
-                    <label for="basic-url" class="form-label">Color</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Three</option>
-                    </select>
+                <div class="mb-3 col-4">
+                    <label asp-for="FechaInicio" class="form-label">Fecha Inicio</label>
+                    <input asp-for="FechaInicio" type="date" class="form-control" min="@hoy" value="@hoy" />
                 </div>
-
-
+                <div class="mb-3 col-4">
+                    <label asp-for="FechaFin" class="form-label">Fecha Fin</label>
+                    <input asp-for="FechaFin" type="date" class="form-control" min="@hoy" />
+                </div>
             </div>
         </div>
         <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-success me-3" asp-controller="Reservas" asp-action="Pago">Pagar</button>
+            <button type="submit" class="btn btn-success me-3" asp-controller="Reservas" asp-action="CrearReserva">Pagar</button>
             <button asp-controller="Reservas" asp-action="Index" class="btn btn-danger">Cancelar</button>
         </div>
     </form>

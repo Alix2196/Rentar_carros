@@ -46,6 +46,9 @@ namespace Web
 
             app.MapControllerRoute(name: "Cliente",
                             pattern: "{controller=Cliente}/{action=Crear}");
+
+            app.MapControllerRoute(name: "Reservas",
+                            pattern: "{controller=Reservas}/{action=CrearReserva}");
                 
             // Prueba de conexión a la base de datos
             using (var scope = app.Services.CreateScope())

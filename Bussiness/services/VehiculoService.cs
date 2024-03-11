@@ -18,6 +18,11 @@ namespace Bussiness.services
             _context = context;
         }
 
+        public EntityVehiculos GetVehiculoId(int id)
+        {
+            return _context.EntityVehiculos.Find(id);
+        }
+
         public string MensajePrueba()
         {
             string respuesta = "Este es el comienzo";

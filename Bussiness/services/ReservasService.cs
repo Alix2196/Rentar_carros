@@ -15,6 +15,7 @@ namespace Bussiness.services
 
         public EntityReservas GuardarReservas(EntityReservas entityReservas)
         {
+            Console.WriteLine("debe ser cliente",entityReservas.Cliente);
             /*Crear Solicitud*/
             _context.EntityReservas.Add(entityReservas);
             _context.SaveChanges();
@@ -33,7 +34,7 @@ namespace Bussiness.services
             return listReservas;
         }
 
-         /*public List<EntityReservas> ListarReservasTarjetaCredito() 
+         public List<EntityReservas> ListarReservasTarjetaCredito() 
          {
              var listarReservascredito = _context.EntityReservas.ToList();
              return listarReservascredito;
@@ -41,6 +42,6 @@ namespace Bussiness.services
         public EntityReservas GetRealizarReservas()
         {
             return new EntityReservas();
-        }*/
+        }
     }
 }

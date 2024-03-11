@@ -9,6 +9,11 @@ namespace Bussiness.services
 
         private readonly AppConection _context = context;
 
+        public EntityCliente GetClienteId(int id)
+        {
+            return _context.EntityCliente.Find(id);
+        }
+
         public List<EntityCliente> ObtenerClientes()
         {
             return _context.EntityCliente.ToList();
@@ -25,6 +30,7 @@ namespace Bussiness.services
 
         public string GetPreferenciasCliente(int documento)
         {
+
             return "Logica preferencia cliente por tipo de vehiculo en la reserva";
         }
 
