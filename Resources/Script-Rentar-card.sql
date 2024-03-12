@@ -37,6 +37,7 @@ DROP TABLE IF EXISTS `estado_reserva`;
 CREATE TABLE `estado_reserva` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `tipo` VARCHAR(25)
+    
 );
 
 DROP TABLE IF EXISTS `solicitudes`;
@@ -58,6 +59,7 @@ CREATE TABLE `reservas` (
     `fecha_inicio` DATE,
     `fecha_fin` DATE,
     `tipo_pago` INT,
+    `valor_pago` INT,
   	FOREIGN KEY (`estado`) REFERENCES `estado_reserva`(`id`),
     FOREIGN KEY (`id_cliente`) REFERENCES `clientes`(`id_cliente`),
     FOREIGN KEY (`id_vehiculo`) REFERENCES `vehiculos`(`id_vehiculo`),

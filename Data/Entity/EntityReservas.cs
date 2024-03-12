@@ -31,5 +31,9 @@ namespace Data.Entity
 
         [ForeignKey("tipo_pago")]
         public EntityTipoPagos? TipoPago { get; set; }
+
+        [Column("valor_pago")]
+        public int? ValorPago { get; set; }
+
     }
 }

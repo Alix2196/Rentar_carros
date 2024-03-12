@@ -30,18 +30,36 @@ namespace Bussiness.services
 
         public string GetPreferenciasCliente(int documento)
         {
+            /*Consutar los clinetes que tiene reservas en la reserva tomar el vehiculo y obtener el tipo de vehiculo*/
+            var cliente = _context.EntityCliente.Find(documento);
+            var reserva = _context.EntityReservas.FirstOrDefault(reserva => reserva.Cliente.Id == cliente.Id);
+            var vehiculo_placa = reserva.Vehiculo.Placa;
+            var vehiculo = _context.EntityVehiculos.FirstOrDefault(vehiculo => vehiculo.Placa == vehiculo_placa);
 
-            return "Logica preferencia cliente por tipo de vehiculo en la reserva";
+            return vehiculo.Tipo;
         }
 
         public int NumeroClienteMayorValorMil()
         {
-            return 0;
+            /* Consultar Reservas valores pagos mayores de 1000 retornar la cantidad*/
+            var cantidadpago = _context.EntityReservas.Where(reserva => reserva.ValorPago >= 1000).Select(reserva => reserva.Cliente.Id).Distinct().Count();
+            return cantidadpago;
         }
 
         public List<EntityCliente> GetListaClientesMayoresCuarentaBogotaReserva()
         {
-            return new List<EntityCliente>();
+            var fechaLimite = DateTime.Today.AddYears(-40);
+            var clientes = _context.EntityCliente
+                .Where(cliente => cliente.Fecha_Nacimiento <= fechaLimite && cliente.Ciudad == "Bogota")
+                .ToList();
+            var clientesConReserva = clientes.Where(cliente => ClienteTieneReserva(cliente.Id)).ToList();
+            return clientesConReserva;
+        }
+
+        private bool ClienteTieneReserva(int clienteId)
+        {
+            var reserva = _context.EntityReservas.FirstOrDefault(reserva => reserva.Cliente.Id == clienteId);
+            return reserva != null;
         }
 
     }
